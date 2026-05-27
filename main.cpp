@@ -83,7 +83,7 @@ public:
     Set operator + (Set element) {
         Set res = Set(this -> data, this -> size);
         for (int i = 0; i < element.getSize(); i++) {
-            res + element.getElem(i);
+            res = res + element.getElem(i);
         }
         return res;
     }
@@ -240,9 +240,9 @@ int main() {
     for (int i = 0; i < s1.getSize(); i++) cout << s1.getElem(i) << " ";
     cout << endl;
 
-    int nums[] = { 1, 2, 3 };
+    int nums1[] = { 1, 2, 3 };
     int nums2[] = { 3, 4, 5 };
-    Set<int> n1(nums, 3);
+    Set<int> n1(nums1, 3);
     Set<int> n2(nums2, 3);
 
     Set<int> united = n1 + n2;
