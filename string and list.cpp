@@ -58,10 +58,14 @@ int main() {
     }
     cout << hsx - points[1][min_index] << " " << hsy - points[2][min_index] << " " << hsz - points[3][min_index] << "\n";
     cout << points[0][min_index];
-
-    float hsx_t = hsx + 2 * (points[1][max_index] - hsx);
-    float hsy_t = hsy + 2 * (points[2][max_index] - hsy);
-    float hsz_t = hsz + 2 * (points[3][max_index] - hsz);
+    
+    float dx = points[1][max_index] - hsx;
+    float dy = points[2][max_index] - hsy;
+    float dz = points[3][max_index] - hsz;
+    
+    float hsx_t = hsx + 2 * dx;
+    float hsy_t = hsy + 2 * dy;
+    float hsz_t = hsz + 2 * dz;
     return 0;
     /*
     for (int i = 0; i < 4; i++) {
