@@ -24,13 +24,16 @@ int main() {
 }
 */
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 using namespace std;
 
 int main() {
-    vector<vector<float>> points(5);
+    float points[5][10];
     float min = 1e9;
-    int index;
+    float max = 0;
+    int min_index;
+    int max_index;
     float hsx, hsy, hsz;
     cin >> hsx >> hsy >> hsz;
     int num;
@@ -38,19 +41,27 @@ int main() {
     for (int i = 0; i < num; i++) {
         float n, x, y, z;
         cin >> n;
-        points[0].push_back(n);
+        points[0][i] = n;
         cin >> x >> y >> z;
-        points[1].push_back(x);
-        points[2].push_back(y);
-        points[3].push_back(z);
-        points[4].push_back(sqrt(x*x + y*y + z*z));
+        points[1][i] = x;
+        points[2][i] = y;
+        points[3][i] = z;
+        points[4][i] = sqrt(x*x + y*y + z*z);
         if (sqrt(pow(x - hsz, 2) + pow(y - hsy, 2) + pow(z - hsz, 2)) < min) {
             min = sqrt(pow(x - hsz, 2) + pow(y - hsy, 2) + pow(z - hsz, 2));
-            index = i;
+            min_index = i;
+        }
+        if (sqrt(pow(x - hsz, 2) + pow(y - hsy, 2) + pow(z - hsz, 2)) > max) {
+            max = sqrt(pow(x - hsz, 2) + pow(y - hsy, 2) + pow(z - hsz, 2));
+            max_index = i;
         }
     }
-    cout << hsx - points[1][index] << " " << hsy - points[2][index] << " " << hsz - points[3][index] << "\n";
-    cout << points[0][index];
+    cout << hsx - points[1][min_index] << " " << hsy - points[2][min_index] << " " << hsz - points[3][min_index] << "\n";
+    cout << points[0][min_index];
+
+    float hsx_t = hsx + 2 * (points[1][max_index] - hsx);
+    float hsy_t = hsy + 2 * (points[2][max_index] - hsy);
+    float hsz_t = hsz + 2 * (points[3][max_index] - hsz);
     return 0;
     /*
     for (int i = 0; i < 4; i++) {
@@ -61,3 +72,4 @@ int main() {
     }
      */
 }
+
